@@ -44,10 +44,8 @@ const Auth = () => {
           },
         });
         if (error) throw error;
-        toast({
-          title: "Account created!",
-          description: "Check your email to verify your account.",
-        });
+        toast({ title: "Account created! Welcome!" });
+        navigate("/");
       }
     } catch (error: any) {
       toast({
