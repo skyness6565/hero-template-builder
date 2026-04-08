@@ -38,9 +38,9 @@ const Navbar = () => {
         <div className="hidden md:flex items-center gap-3">
           {user ? (
             <>
-              <span className="text-sm text-muted-foreground truncate max-w-[150px]">
-                {user.email}
-              </span>
+              <Button variant="ghost" size="sm" onClick={() => navigate("/profile")}>
+                Profile
+              </Button>
               <Button variant="ghost" size="sm" onClick={handleSignOut}>
                 <LogOut size={16} className="mr-1" /> Logout
               </Button>
