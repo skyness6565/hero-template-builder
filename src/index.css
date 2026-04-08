@@ -6,47 +6,50 @@
 
 @layer base {
   :root {
-    --background: 0 0% 7%;
-    --foreground: 0 0% 95%;
+    --background: 220 50% 7%;
+    --foreground: 210 20% 95%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 95%;
+    --card: 220 45% 10%;
+    --card-foreground: 210 20% 95%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 95%;
+    --popover: 220 45% 10%;
+    --popover-foreground: 210 20% 95%;
 
-    --primary: 0 85% 50%;
+    --primary: 217 91% 60%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 0 0% 14%;
-    --secondary-foreground: 0 0% 90%;
+    --secondary: 220 40% 14%;
+    --secondary-foreground: 210 20% 90%;
 
-    --muted: 0 0% 16%;
-    --muted-foreground: 0 0% 55%;
+    --muted: 220 35% 16%;
+    --muted-foreground: 220 15% 55%;
 
-    --accent: 0 85% 50%;
+    --accent: 217 91% 60%;
     --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 84% 60%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 18%;
-    --input: 0 0% 18%;
-    --ring: 0 85% 50%;
+    --border: 220 30% 18%;
+    --input: 220 30% 18%;
+    --ring: 217 91% 60%;
 
     --radius: 0.75rem;
 
     --chart-green: 142 71% 45%;
-    --chart-red: 0 85% 50%;
+    --chart-red: 0 84% 60%;
+    --chart-blue: 217 91% 60%;
+    --notification: 43 96% 90%;
+    --notification-foreground: 43 50% 20%;
 
-    --sidebar-background: 0 0% 8%;
-    --sidebar-foreground: 0 0% 90%;
-    --sidebar-primary: 0 85% 50%;
+    --sidebar-background: 220 50% 8%;
+    --sidebar-foreground: 210 20% 90%;
+    --sidebar-primary: 217 91% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 0 0% 14%;
-    --sidebar-accent-foreground: 0 0% 90%;
-    --sidebar-border: 0 0% 18%;
-    --sidebar-ring: 0 85% 50%;
+    --sidebar-accent: 220 40% 14%;
+    --sidebar-accent-foreground: 210 20% 90%;
+    --sidebar-border: 220 30% 18%;
+    --sidebar-ring: 217 91% 60%;
   }
 }
 
@@ -72,10 +75,13 @@
     font-family: 'Inter', sans-serif;
   }
   .text-gradient-primary {
-    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-red-400;
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-primary to-blue-400;
   }
   .glow-primary {
-    box-shadow: 0 0 40px hsl(0 85% 50% / 0.15), 0 0 80px hsl(0 85% 50% / 0.05);
+    box-shadow: 0 0 40px hsl(217 91% 60% / 0.2), 0 0 80px hsl(217 91% 60% / 0.08);
+  }
+  .glow-blue {
+    box-shadow: 0 0 20px hsl(217 91% 60% / 0.3), 0 0 60px hsl(217 91% 60% / 0.1);
   }
   .glass-card {
     @apply bg-card/60 backdrop-blur-xl border border-border/50;
