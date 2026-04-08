@@ -28,7 +28,7 @@ const InvestmentSection = () => (
         >
           <div className="relative overflow-hidden">
             <img src={btcChart} alt="Bitcoin trading chart" width={800} height={600} loading="lazy" className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500" />
-            <span className="absolute top-4 right-4 bg-green-500/90 text-foreground text-xs font-semibold px-3 py-1 rounded-full">Live</span>
+            <span className="absolute top-4 right-4 bg-primary/90 text-primary-foreground text-xs font-semibold px-3 py-1 rounded-full">Live</span>
           </div>
           <div className="p-6">
             <div className="text-sm text-primary font-medium">Bitcoin Trading</div>

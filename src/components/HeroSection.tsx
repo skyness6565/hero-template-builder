@@ -67,7 +67,7 @@ const HeroSection = () => (
           <div className="absolute -bottom-6 -left-6 glass-card rounded-xl p-5 glow-primary max-w-[280px]">
             <div className="flex justify-between items-center mb-3">
               <span className="font-heading font-semibold">BTC/USD</span>
-              <span className="text-sm font-semibold text-green-400">+5.24%</span>
+              <span className="text-sm font-semibold text-primary">+5.24%</span>
             </div>
             <svg viewBox="0 0 200 60" className="w-full h-12 mb-3">
               <polyline
