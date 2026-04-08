@@ -21,7 +21,7 @@ const Auth = () => {
   const { user } = useAuth();
 
   useEffect(() => {
-    if (user) navigate("/", { replace: true });
+    if (user) navigate("/dashboard", { replace: true });
   }, [user, navigate]);
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -33,7 +33,7 @@ const Auth = () => {
         const { error } = await supabase.auth.signInWithPassword({ email, password });
         if (error) throw error;
         toast({ title: "Welcome back!" });
-        navigate("/");
+        navigate("/dashboard");
       } else {
         const { error } = await supabase.auth.signUp({
           email,
@@ -45,7 +45,7 @@ const Auth = () => {
         });
         if (error) throw error;
         toast({ title: "Account created! Welcome!" });
-        navigate("/");
+        navigate("/dashboard");
       }
     } catch (error: any) {
       toast({
