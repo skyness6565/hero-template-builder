@@ -61,6 +61,13 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        "chart-green": "hsl(var(--chart-green))",
+        "chart-red": "hsl(var(--chart-red))",
+        "chart-blue": "hsl(var(--chart-blue))",
+        notification: {
+          DEFAULT: "hsl(var(--notification))",
+          foreground: "hsl(var(--notification-foreground))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
