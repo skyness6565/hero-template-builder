@@ -231,6 +231,7 @@ export type Database = {
           expected_return: number
           id: string
           plan_id: string | null
+          roi_speed_multiplier: number
           start_date: string
           status: string
           updated_at: string
@@ -243,6 +244,7 @@ export type Database = {
           expected_return: number
           id?: string
           plan_id?: string | null
+          roi_speed_multiplier?: number
           start_date?: string
           status?: string
           updated_at?: string
@@ -255,6 +257,7 @@ export type Database = {
           expected_return?: number
           id?: string
           plan_id?: string | null
+          roi_speed_multiplier?: number
           start_date?: string
           status?: string
           updated_at?: string
@@ -288,6 +291,33 @@ export type Database = {
           id?: string
           role?: Database["public"]["Enums"]["app_role"]
           user_id?: string
+        }
+        Relationships: []
+      }
+      wallet_addresses: {
+        Row: {
+          address: string
+          created_at: string
+          crypto_type: string
+          id: string
+          label: string | null
+          updated_at: string
+        }
+        Insert: {
+          address: string
+          created_at?: string
+          crypto_type: string
+          id?: string
+          label?: string | null
+          updated_at?: string
+        }
+        Update: {
+          address?: string
+          created_at?: string
+          crypto_type?: string
+          id?: string
+          label?: string | null
+          updated_at?: string
         }
         Relationships: []
       }

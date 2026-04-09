@@ -1,7 +1,7 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import {
-  LayoutDashboard, Users, Clock, TrendingUp, Bot, DollarSign, ArrowLeft, LogOut, ChevronRight, X,
+  LayoutDashboard, Users, Clock, TrendingUp, Bot, DollarSign, ArrowLeft, LogOut, ChevronRight, X, Wallet,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -12,6 +12,7 @@ const items = [
   { label: "Investments", icon: TrendingUp, path: "/admin/investments" },
   { label: "Plans", icon: DollarSign, path: "/admin/plans" },
   { label: "Trading Bots", icon: Bot, path: "/admin/bots" },
+  { label: "Wallets", icon: Wallet, path: "/admin/wallets" },
 ];
 
 interface Props { open: boolean; onClose: () => void; }
