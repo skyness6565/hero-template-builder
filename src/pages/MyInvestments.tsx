@@ -17,12 +17,25 @@ const MyInvestments = () => {
       .then(({ data }) => { if (data) setInvestments(data); });
   }, [user]);
 
-  const getProgress = (start: string, end: string) => {
+  // Refresh progress every 10 seconds
+  const [, setTick] = useState(0);
+  useEffect(() => {
+    const interval = setInterval(() => setTick((t) => t + 1), 10000);
+    return () => clearInterval(interval);
+  }, []);
+
+  const getProgress = (start: string, end: string, multiplier: number = 1) => {
     const s = new Date(start).getTime();
     const e = new Date(end).getTime();
-    const now = Date.now();
-    if (now >= e) return 100;
-    return Math.min(100, Math.max(0, ((now - s) / (e - s)) * 100));
+    const elapsed = (Date.now() - s) * multiplier;
+    const total = e - s;
+    if (total <= 0) return 100;
+    return Math.min(100, Math.max(0, (elapsed / total) * 100));
+  };
+
+  const getCurrentReturn = (amount: number, expectedReturn: number, progress: number) => {
+    const profit = expectedReturn - amount;
+    return amount + (profit * progress / 100);
   };
 
   const statusColors: Record<string, string> = {
@@ -47,8 +60,13 @@ const MyInvestments = () => {
       ) : (
         <div className="space-y-4">
           {investments.map(inv => {
-            const progress = getProgress(inv.start_date, inv.end_date);
+            const multiplier = Number(inv.roi_speed_multiplier || 1);
+            const progress = getProgress(inv.start_date, inv.end_date, multiplier);
             const planName = inv.investment_plans?.name || "Investment";
+            const amount = Number(inv.amount);
+            const expectedReturn = Number(inv.expected_return);
+            const currentReturn = getCurrentReturn(amount, expectedReturn, progress);
+            const currentProfit = currentReturn - amount;
             return (
               <div key={inv.id} className="glass-card rounded-xl p-5">
                 <div className="flex items-center justify-between mb-3">
@@ -58,12 +76,22 @@ const MyInvestments = () => {
                 <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 text-sm mb-3">
                   <div>
                     <p className="text-xs text-muted-foreground">Invested</p>
-                    <p className="font-bold text-foreground">${Number(inv.amount).toFixed(2)}</p>
+                    <p className="font-bold text-foreground">${amount.toFixed(2)}</p>
                   </div>
                   <div>
-                    <p className="text-xs text-muted-foreground">Expected Return</p>
-                    <p className="font-bold text-chart-green">${Number(inv.expected_return).toFixed(2)}</p>
+                    <p className="text-xs text-muted-foreground">Current Return</p>
+                    <p className="font-bold text-chart-green">${currentReturn.toFixed(2)}</p>
                   </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Profit So Far</p>
+                    <p className="font-bold text-chart-green">+${currentProfit.toFixed(2)}</p>
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Expected Total</p>
+                    <p className="font-bold text-foreground">${expectedReturn.toFixed(2)}</p>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-3 text-sm mb-3">
                   <div>
                     <p className="text-xs text-muted-foreground">Start</p>
                     <p className="font-medium text-foreground">{format(new Date(inv.start_date), "MMM d, yy")}</p>
@@ -75,7 +103,7 @@ const MyInvestments = () => {
                 </div>
                 <div className="flex items-center gap-3">
                   <Progress value={progress} className="flex-1 h-2" />
-                  <span className="text-xs text-muted-foreground font-medium">{progress.toFixed(0)}%</span>
+                  <span className="text-xs text-muted-foreground font-medium">{progress.toFixed(1)}%</span>
                 </div>
               </div>
             );
