@@ -1,5 +1,6 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
+import useAdmin from "@/hooks/useAdmin";
 import {
   LayoutDashboard,
   Download,
@@ -13,6 +14,7 @@ import {
   LogOut,
   ChevronRight,
   X,
+  Shield,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -43,6 +45,7 @@ const DashboardSidebar = ({ open, onClose }: Props) => {
   const navigate = useNavigate();
   const location = useLocation();
   const { signOut } = useAuth();
+  const { isAdmin } = useAdmin();
 
   const NavItem = ({ item }: { item: typeof mainItems[0] }) => {
     const active = location.pathname === item.path;
@@ -108,7 +111,16 @@ const DashboardSidebar = ({ open, onClose }: Props) => {
           ))}
         </nav>
 
-        <div className="p-4 border-t border-sidebar-border">
+        <div className="p-4 border-t border-sidebar-border space-y-1">
+          {isAdmin && (
+            <button
+              onClick={() => { navigate("/admin"); onClose(); }}
+              className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm text-yellow-400 hover:bg-yellow-500/10 transition-colors"
+            >
+              <Shield size={18} />
+              <span>Admin Panel</span>
+            </button>
+          )}
           <button
             onClick={() => { signOut(); onClose(); }}
             className="flex items-center gap-3 w-full px-4 py-2.5 rounded-lg text-sm text-primary hover:bg-primary/10 transition-colors"
