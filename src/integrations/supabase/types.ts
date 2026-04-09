@@ -14,6 +14,42 @@ export type Database = {
   }
   public: {
     Tables: {
+      investment_plans: {
+        Row: {
+          created_at: string
+          description: string | null
+          duration_days: number
+          id: string
+          max_amount: number
+          min_amount: number
+          name: string
+          roi_percentage: number
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          duration_days?: number
+          id?: string
+          max_amount?: number
+          min_amount?: number
+          name: string
+          roi_percentage?: number
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          duration_days?: number
+          id?: string
+          max_amount?: number
+          min_amount?: number
+          name?: string
+          roi_percentage?: number
+          status?: string
+        }
+        Relationships: []
+      }
       profiles: {
         Row: {
           avatar_url: string | null
@@ -40,6 +76,199 @@ export type Database = {
           user_id?: string
         }
         Relationships: []
+      }
+      trading_bots: {
+        Row: {
+          created_at: string
+          description: string | null
+          id: string
+          name: string
+          roi_max: number
+          roi_min: number
+          status: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name: string
+          roi_max?: number
+          roi_min?: number
+          status?: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          id?: string
+          name?: string
+          roi_max?: number
+          roi_min?: number
+          status?: string
+        }
+        Relationships: []
+      }
+      transactions: {
+        Row: {
+          amount: number
+          created_at: string
+          crypto_type: string | null
+          description: string | null
+          id: string
+          status: string
+          type: string
+          updated_at: string
+          user_id: string
+          wallet_address: string | null
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          crypto_type?: string | null
+          description?: string | null
+          id?: string
+          status?: string
+          type: string
+          updated_at?: string
+          user_id: string
+          wallet_address?: string | null
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          crypto_type?: string | null
+          description?: string | null
+          id?: string
+          status?: string
+          type?: string
+          updated_at?: string
+          user_id?: string
+          wallet_address?: string | null
+        }
+        Relationships: []
+      }
+      user_balances: {
+        Row: {
+          balance: number
+          bonus: number
+          created_at: string
+          id: string
+          total_deposits: number
+          total_profit: number
+          total_withdrawals: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          balance?: number
+          bonus?: number
+          created_at?: string
+          id?: string
+          total_deposits?: number
+          total_profit?: number
+          total_withdrawals?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          balance?: number
+          bonus?: number
+          created_at?: string
+          id?: string
+          total_deposits?: number
+          total_profit?: number
+          total_withdrawals?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
+      user_bots: {
+        Row: {
+          bot_id: string | null
+          created_at: string
+          id: string
+          is_active: boolean
+          total_profit: number
+          trades_executed: number
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          bot_id?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          total_profit?: number
+          trades_executed?: number
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          bot_id?: string | null
+          created_at?: string
+          id?: string
+          is_active?: boolean
+          total_profit?: number
+          trades_executed?: number
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_bots_bot_id_fkey"
+            columns: ["bot_id"]
+            isOneToOne: false
+            referencedRelation: "trading_bots"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      user_investments: {
+        Row: {
+          amount: number
+          created_at: string
+          end_date: string
+          expected_return: number
+          id: string
+          plan_id: string | null
+          start_date: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          amount: number
+          created_at?: string
+          end_date: string
+          expected_return: number
+          id?: string
+          plan_id?: string | null
+          start_date?: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          amount?: number
+          created_at?: string
+          end_date?: string
+          expected_return?: number
+          id?: string
+          plan_id?: string | null
+          start_date?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "user_investments_plan_id_fkey"
+            columns: ["plan_id"]
+            isOneToOne: false
+            referencedRelation: "investment_plans"
+            referencedColumns: ["id"]
+          },
+        ]
       }
     }
     Views: {
