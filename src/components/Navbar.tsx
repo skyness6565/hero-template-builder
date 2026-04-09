@@ -19,8 +19,8 @@ const Navbar = () => {
     <nav className="fixed top-0 left-0 right-0 z-50 glass-card border-b border-border/30">
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <div className="font-heading text-xl font-bold">
-          <span className="text-foreground">Trade</span>
-          <span className="text-primary">Hub</span>
+          <span className="text-foreground">Crypto</span>
+          <span className="text-primary">ExperTrade</span>
         </div>
 
         <div className="hidden md:flex items-center gap-8">
