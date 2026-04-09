@@ -31,8 +31,8 @@ const AdminSidebar = ({ open, onClose }: Props) => {
       )}>
         <div className="flex items-center justify-between px-5 py-5 border-b border-sidebar-border">
           <div className="font-heading text-xl font-bold flex items-center gap-1">
-            <span className="text-foreground">Trade</span>
-            <span className="text-primary">Hub</span>
+            <span className="text-foreground">Crypto</span>
+            <span className="text-primary">ExperTrade</span>
             <span className="text-xs ml-2 bg-primary/20 text-primary px-2 py-0.5 rounded-full">Admin</span>
           </div>
           <button onClick={onClose} className="lg:hidden text-muted-foreground hover:text-foreground"><X size={20} /></button>

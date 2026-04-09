@@ -36,8 +36,8 @@ const DashboardLayout = ({ children }: Props) => {
             <Menu size={24} />
           </button>
           <div className="font-heading text-lg font-bold flex items-center gap-1">
-            <span className="text-foreground">Trade</span>
-            <span className="text-primary">Hub</span>
+            <span className="text-foreground">Crypto</span>
+            <span className="text-primary">ExperTrade</span>
           </div>
           <div className="w-6" />
         </header>
