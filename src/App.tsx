@@ -22,6 +22,7 @@ import AdminTransactions from "./pages/admin/AdminTransactions";
 import AdminInvestments from "./pages/admin/AdminInvestments";
 import AdminPlans from "./pages/admin/AdminPlans";
 import AdminBots from "./pages/admin/AdminBots";
+import AdminWallets from "./pages/admin/AdminWallets";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -52,6 +53,7 @@ const App = () => (
             <Route path="/admin/investments" element={<AdminInvestments />} />
             <Route path="/admin/plans" element={<AdminPlans />} />
             <Route path="/admin/bots" element={<AdminBots />} />
+            <Route path="/admin/wallets" element={<AdminWallets />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
