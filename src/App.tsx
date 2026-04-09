@@ -16,6 +16,12 @@ import TransactionHistory from "./pages/TransactionHistory";
 import MyInvestments from "./pages/MyInvestments";
 import PortfolioPerformance from "./pages/PortfolioPerformance";
 import BotTrading from "./pages/BotTrading";
+import AdminDashboard from "./pages/admin/AdminDashboard";
+import AdminUsers from "./pages/admin/AdminUsers";
+import AdminTransactions from "./pages/admin/AdminTransactions";
+import AdminInvestments from "./pages/admin/AdminInvestments";
+import AdminPlans from "./pages/admin/AdminPlans";
+import AdminBots from "./pages/admin/AdminBots";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -40,6 +46,12 @@ const App = () => (
             <Route path="/dashboard/investments" element={<MyInvestments />} />
             <Route path="/dashboard/portfolio" element={<PortfolioPerformance />} />
             <Route path="/dashboard/bots" element={<BotTrading />} />
+            <Route path="/admin" element={<AdminDashboard />} />
+            <Route path="/admin/users" element={<AdminUsers />} />
+            <Route path="/admin/transactions" element={<AdminTransactions />} />
+            <Route path="/admin/investments" element={<AdminInvestments />} />
+            <Route path="/admin/plans" element={<AdminPlans />} />
+            <Route path="/admin/bots" element={<AdminBots />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </AuthProvider>
