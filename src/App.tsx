@@ -24,6 +24,7 @@ import AdminPlans from "./pages/admin/AdminPlans";
 import AdminBots from "./pages/admin/AdminBots";
 import AdminWallets from "./pages/admin/AdminWallets";
 import NotFound from "./pages/NotFound";
+import WhatsAppButton from "./components/WhatsAppButton";
 
 const queryClient = new QueryClient();
 
