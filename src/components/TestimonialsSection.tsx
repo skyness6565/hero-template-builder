@@ -2,21 +2,12 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const testimonials = [
-  {
-    quote: "The fastest payout I've ever experienced. Had funds in my bank within hours of withdrawal.",
-    name: "Alex M.",
-    role: "Professional Trader",
-  },
-  {
-    quote: "A broker that values security. My crypto assets are safe and I have peace of mind.",
-    name: "Jordan K.",
-    role: "Crypto Investor",
-  },
-  {
-    quote: "Transparent fees, instant execution, and amazing support. This is how trading should be.",
-    name: "Chris L.",
-    role: "Day Trader",
-  },
+  { quote: "Since I started using CryptoExperTrade, I have been earning like never before. You guys have the best signals.", name: "Malcom47", role: "Verified Trader" },
+  { quote: "I already got more than $200,000 within a month investing with CryptoExperTrade. Will again invest soon.", name: "Christy", role: "Elite Investor" },
+  { quote: "I was able to earn additional $30,000 to my profit. It's amazing, you guys are the best, keep it up.", name: "Linday8", role: "Professional Trader" },
+  { quote: "This was a very easy process and I received my funds quickly as I needed them! Highly recommend CryptoExperTrade.", name: "Crian", role: "Active Trader" },
+  { quote: "I rate CryptoExperTrade five stars because of the service, you register online, upload ID and you deposit and withdraw after trades.", name: "Claudia", role: "Satisfied Investor" },
+  { quote: "I am very pleased with the customer service. Also online service is great and easy thank you CryptoExperTrade team.", name: "Jenny", role: "Premium Member" },
 ];
 
 const TestimonialsSection = () => (
@@ -28,17 +19,21 @@ const TestimonialsSection = () => (
         viewport={{ once: true }}
         className="text-center mb-14"
       >
-        <h2 className="text-3xl md:text-4xl font-bold font-heading">What Our Traders Say</h2>
+        <span className="text-sm text-primary font-medium">Success Stories</span>
+        <h2 className="text-3xl md:text-4xl font-bold font-heading mt-2">Client Testimonials</h2>
+        <p className="text-muted-foreground mt-4">
+          Hear from our satisfied clients who have achieved impressive results with our platform
+        </p>
       </motion.div>
 
-      <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+      <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
         {testimonials.map((t, i) => (
           <motion.div
             key={t.name}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: i * 0.1 }}
+            transition={{ delay: i * 0.08 }}
             className="glass-card rounded-xl p-6"
           >
             <div className="flex gap-1 mb-4">
@@ -57,20 +52,6 @@ const TestimonialsSection = () => (
               </div>
             </div>
           </motion.div>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 max-w-3xl mx-auto text-center">
-        {[
-          { value: "$2.5B+", label: "Daily Volume" },
-          { value: "500K+", label: "Active Traders" },
-          { value: "<1hr", label: "Avg Payout Time" },
-          { value: "99.9%", label: "Uptime" },
-        ].map((s) => (
-          <div key={s.label}>
-            <div className="text-2xl font-bold font-heading">{s.value}</div>
-            <div className="text-xs text-muted-foreground">{s.label}</div>
-          </div>
         ))}
       </div>
     </div>
