@@ -12,7 +12,7 @@ const products = [
 const TradingProductsSection = () => {
   const navigate = useNavigate();
   return (
-    <section className="py-20 border-y border-border/50">
+    <section id="markets" className="py-20 border-y border-border/50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
