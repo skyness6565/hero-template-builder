@@ -1,10 +1,13 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import btcChart from "@/assets/btc-chart.jpg";
 import portfolioGrowth from "@/assets/portfolio-growth.jpg";
 
-const InvestmentSection = () => (
-  <section className="py-20">
+const InvestmentSection = () => {
+  const navigate = useNavigate();
+  return (
+  <section id="markets" className="py-20">
     <div className="container mx-auto px-4">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
@@ -56,10 +59,11 @@ const InvestmentSection = () => (
       </div>
 
       <div className="text-center mt-10">
-        <Button size="lg">Start Trading Now</Button>
+        <Button size="lg" onClick={() => navigate("/auth")}>Start Trading Now</Button>
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default InvestmentSection;

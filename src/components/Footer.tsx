@@ -1,5 +1,5 @@
 const Footer = () => (
-  <footer className="border-t border-border/50 py-10">
+  <footer id="contact" className="border-t border-border/50 py-10">
     <div className="container mx-auto px-4 text-center">
       <div className="font-heading text-xl font-bold mb-4">
         <span className="text-foreground">Crypto</span>
