@@ -69,10 +69,10 @@ const Navbar = () => {
           ) : (
             <>
               <Button variant="ghost" size="sm" onClick={() => navigate("/auth")}>
-                Login
+                Log in
               </Button>
               <Button size="sm" onClick={() => navigate("/auth")}>
-                Open Account
+                Sign up
               </Button>
             </>
           )}
@@ -107,10 +107,10 @@ const Navbar = () => {
             ) : (
               <>
                 <Button variant="ghost" size="sm" className="flex-1" onClick={() => navigate("/auth")}>
-                  Login
+                  Log in
                 </Button>
                 <Button size="sm" className="flex-1" onClick={() => navigate("/auth")}>
-                  Open Account
+                  Sign up
                 </Button>
               </>
             )}
