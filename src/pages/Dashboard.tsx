@@ -2,12 +2,10 @@ import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/contexts/AuthContext";
 import DashboardLayout from "@/components/dashboard/DashboardLayout";
-import SubscriptionBanner from "@/components/dashboard/SubscriptionBanner";
 import WelcomeBanner from "@/components/dashboard/WelcomeBanner";
-import VerificationBanner from "@/components/dashboard/VerificationBanner";
 import StatCards from "@/components/dashboard/StatCards";
 import QuickActions from "@/components/dashboard/QuickActions";
-import StatusCard from "@/components/dashboard/StatusCard";
+import LiveChartWidget from "@/components/dashboard/LiveChartWidget";
 import RecentTransactionsWidget from "@/components/dashboard/RecentTransactionsWidget";
 import LivePriceTicker from "@/components/dashboard/LivePriceTicker";
 
@@ -23,15 +21,28 @@ const Dashboard = () => {
 
   return (
     <DashboardLayout>
-      <div className="space-y-4">
-        <LivePriceTicker />
-        <SubscriptionBanner />
+      <div className="space-y-5">
+        {/* Welcome + quick overview */}
         <WelcomeBanner />
-        <VerificationBanner />
+
+        {/* Live price ticker */}
+        <LivePriceTicker />
+
+        {/* Stat cards */}
         <StatCards />
+
+        {/* Quick actions */}
         <QuickActions />
-        <RecentTransactionsWidget />
-        <StatusCard />
+
+        {/* Chart + Transactions grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+          <div className="lg:col-span-2">
+            <LiveChartWidget />
+          </div>
+          <div className="lg:col-span-1">
+            <RecentTransactionsWidget />
+          </div>
+        </div>
       </div>
     </DashboardLayout>
   );

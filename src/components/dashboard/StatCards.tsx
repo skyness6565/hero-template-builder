@@ -5,25 +5,27 @@ const StatCards = () => {
   const { balance, total_profit, bonus, total_deposits, total_withdrawals } = useUserBalance();
 
   const stats = [
-    { label: "Balance", value: `$${balance.toFixed(2)}`, icon: Wallet, gradient: "from-blue-600 to-blue-500" },
-    { label: "Profit/ROI", value: `$${total_profit.toFixed(2)}`, icon: TrendingUp, gradient: "from-emerald-600 to-teal-500" },
-    { label: "Bonus", value: `$${bonus.toFixed(2)}`, icon: Gift, gradient: "from-purple-600 to-violet-500" },
-    { label: "Deposits", value: `$${total_deposits.toFixed(2)}`, icon: Download, gradient: "from-teal-500 to-cyan-400" },
-    { label: "Withdrawals", value: `$${total_withdrawals.toFixed(2)}`, icon: Upload, gradient: "from-orange-500 to-amber-400" },
-    { label: "Bitcoin", value: "0.000000 BTC", subValue: "≈ $0.00", icon: Bitcoin, gradient: "from-yellow-600 to-amber-500" },
+    { label: "Total Balance", value: `$${balance.toFixed(2)}`, icon: Wallet, color: "from-primary/20 to-primary/5", iconColor: "text-primary", borderColor: "border-primary/20" },
+    { label: "Total Profit", value: `$${total_profit.toFixed(2)}`, icon: TrendingUp, color: "from-chart-green/20 to-chart-green/5", iconColor: "text-chart-green", borderColor: "border-chart-green/20" },
+    { label: "Bonus", value: `$${bonus.toFixed(2)}`, icon: Gift, color: "from-purple-500/20 to-purple-500/5", iconColor: "text-purple-400", borderColor: "border-purple-500/20" },
+    { label: "Deposits", value: `$${total_deposits.toFixed(2)}`, icon: Download, color: "from-cyan-500/20 to-cyan-500/5", iconColor: "text-cyan-400", borderColor: "border-cyan-500/20" },
+    { label: "Withdrawals", value: `$${total_withdrawals.toFixed(2)}`, icon: Upload, color: "from-orange-500/20 to-orange-500/5", iconColor: "text-orange-400", borderColor: "border-orange-500/20" },
+    { label: "Bitcoin", value: "0.000000 BTC", subValue: "≈ $0.00", icon: Bitcoin, color: "from-yellow-500/20 to-yellow-500/5", iconColor: "text-yellow-400", borderColor: "border-yellow-500/20" },
   ];
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
       {stats.map((stat) => (
-        <div key={stat.label} className={`relative overflow-hidden rounded-xl p-5 bg-gradient-to-br ${stat.gradient} border border-white/10`}>
-          <div className="absolute right-4 top-4 opacity-30">
-            <stat.icon size={28} className="text-white" />
+        <div key={stat.label} className={`relative overflow-hidden rounded-xl p-4 bg-gradient-to-br ${stat.color} border ${stat.borderColor} backdrop-blur-sm`}>
+          <div className="flex items-start justify-between mb-2">
+            <div className={`h-9 w-9 rounded-lg bg-card/60 flex items-center justify-center`}>
+              <stat.icon size={18} className={stat.iconColor} />
+            </div>
           </div>
-          <p className="text-xs font-semibold text-white/80 uppercase tracking-wider mb-1">{stat.label}</p>
-          <p className="text-xl font-heading font-bold text-white">{stat.value}</p>
+          <p className="text-xs text-muted-foreground font-medium mb-0.5">{stat.label}</p>
+          <p className="text-lg font-heading font-bold text-foreground leading-tight">{stat.value}</p>
           {"subValue" in stat && stat.subValue && (
-            <p className="text-xs text-white/60 mt-0.5">{stat.subValue}</p>
+            <p className="text-[10px] text-muted-foreground mt-0.5">{stat.subValue}</p>
           )}
         </div>
       ))}
