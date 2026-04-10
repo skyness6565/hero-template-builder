@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import { ArrowRight, TrendingUp } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import heroImg from "@/assets/hero-trading.jpg";
@@ -9,7 +10,9 @@ const stats = [
   { value: "99.9%", label: "Uptime" },
 ];
 
-const HeroSection = () => (
+const HeroSection = () => {
+  const navigate = useNavigate();
+  return (
   <section id="home" className="relative pt-28 pb-20 overflow-hidden">
     <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
     <div className="container mx-auto px-4">
@@ -32,10 +35,10 @@ const HeroSection = () => (
           </p>
 
           <div className="flex flex-wrap gap-4 mb-10">
-            <Button size="lg" className="gap-2">
+            <Button size="lg" className="gap-2" onClick={() => navigate("/auth")}>
               Login Account <ArrowRight size={16} />
             </Button>
-            <Button size="lg" variant="outline">
+            <Button size="lg" variant="outline" onClick={() => navigate("/auth")}>
               Open Account
             </Button>
           </div>
@@ -92,6 +95,7 @@ const HeroSection = () => (
       </div>
     </div>
   </section>
-);
+  );
+};
 
 export default HeroSection;
