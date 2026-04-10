@@ -57,6 +57,8 @@ const App = () => (
             <Route path="/admin/wallets" element={<AdminWallets />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
+          <WhatsAppButton />
+          </Routes>
         </AuthProvider>
       </BrowserRouter>
     </TooltipProvider>
