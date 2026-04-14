@@ -14,7 +14,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section id="home" className="relative pt-28 pb-20 overflow-hidden">
+    <section id="home" className="relative pt-20 sm:pt-28 pb-12 sm:pb-20 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent pointer-events-none" />
       <div className="container mx-auto px-4">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -27,12 +27,12 @@ const HeroSection = () => {
               Innovative Trading Platform
             </span>
 
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6 font-heading">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-4 sm:mb-6 font-heading">
               Trade Global Markets{" "}
               <span className="text-gradient-primary">With Confidence</span>
             </h1>
 
-            <p className="text-muted-foreground text-lg mb-8 max-w-lg">
+            <p className="text-muted-foreground text-sm sm:text-base md:text-lg mb-6 sm:mb-8 max-w-lg">
               Access advanced trading tools for Forex, Cryptocurrencies, Commodities, Indices, and more with competitive spreads and lightning-fast execution.
             </p>
 
