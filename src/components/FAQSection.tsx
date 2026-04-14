@@ -12,24 +12,24 @@ const faqs = [
 ];
 
 const FAQSection = () => (
-  <section id="faq" className="py-20">
+  <section id="faq" className="py-12 sm:py-20">
     <div className="container mx-auto px-4 max-w-3xl">
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        className="text-center mb-14"
+        className="text-center mb-8 sm:mb-14"
       >
-        <span className="text-sm text-primary font-medium">Have Questions?</span>
-        <h2 className="text-3xl md:text-4xl font-bold font-heading mt-2">Frequently Asked Questions</h2>
-        <p className="text-muted-foreground mt-4">
+        <span className="text-xs sm:text-sm text-primary font-medium">Have Questions?</span>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading mt-2">Frequently Asked Questions</h2>
+        <p className="text-muted-foreground mt-3 text-sm sm:text-base">
           Everything you need to know about trading with us.
         </p>
       </motion.div>
 
-      <Accordion type="single" collapsible className="space-y-3">
+      <Accordion type="single" collapsible className="space-y-2 sm:space-y-3">
         {faqs.map((faq, i) => (
-          <AccordionItem key={i} value={`faq-${i}`} className="glass-card rounded-xl border border-border/50 px-6">
+          <AccordionItem key={i} value={`faq-${i}`} className="glass-card rounded-xl border border-border/50 px-4 sm:px-6">
             <AccordionTrigger className="font-heading text-sm font-medium hover:no-underline">
               {faq.q}
             </AccordionTrigger>
