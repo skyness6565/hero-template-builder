@@ -12,19 +12,19 @@ const products = [
 const TradingProductsSection = () => {
   const navigate = useNavigate();
   return (
-    <section id="markets" className="py-20 border-y border-border/50">
+     <section id="markets" className="py-12 sm:py-20 border-y border-border/50">
       <div className="container mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14"
+          className="text-center mb-8 sm:mb-14"
         >
-          <h2 className="text-3xl md:text-4xl font-bold font-heading">Diverse Trading Products</h2>
-          <p className="text-muted-foreground mt-4">Access global markets with competitive conditions</p>
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold font-heading">Diverse Trading Products</h2>
+          <p className="text-muted-foreground mt-3 text-sm sm:text-base">Access global markets with competitive conditions</p>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-6 max-w-5xl mx-auto">
           {products.map((p, i) => (
             <motion.div
               key={p.title}
@@ -32,14 +32,14 @@ const TradingProductsSection = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.1 }}
-              className="glass-card rounded-xl p-6 hover:border-primary/30 transition-colors group cursor-pointer"
+              className="glass-card rounded-xl p-4 sm:p-6 hover:border-primary/30 transition-colors group cursor-pointer"
               onClick={() => navigate("/auth")}
             >
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-                <p.icon className="text-primary" size={22} />
+              <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-primary/10 flex items-center justify-center mb-3 sm:mb-4 group-hover:bg-primary/20 transition-colors">
+                <p.icon className="text-primary" size={20} />
               </div>
-              <h3 className="font-heading font-semibold text-lg mb-2">{p.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
+              <h3 className="font-heading font-semibold text-sm sm:text-lg mb-1 sm:mb-2">{p.title}</h3>
+              <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">{p.desc}</p>
             </motion.div>
           ))}
         </div>
