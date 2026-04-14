@@ -39,7 +39,7 @@ const TradeFreedomSection = () => {
           >
             <img
               src={heroPlatform}
-              alt="CryptoExperTrade trading platform"
+              alt="CryptoExpertTrade trading platform"
               width={1280}
               height={720}
               loading="lazy"
@@ -54,7 +54,7 @@ const TradeFreedomSection = () => {
           >
             <h3 className="font-heading font-semibold text-xl mb-4">Premium Trading Experience</h3>
             <p className="text-muted-foreground text-sm mb-6 leading-relaxed">
-              One of the primary goals of CryptoExperTrade is to provide the best product in the market. Our relationships with leading tier one financial institutions mean deep liquidity and tighter spreads for Forex traders.
+              One of the primary goals of CryptoExpertTrade is to provide the best product in the market. Our relationships with leading tier one financial institutions mean deep liquidity and tighter spreads for Forex traders.
             </p>
             <ul className="space-y-3 mb-6">
               {benefits.map((b) => (

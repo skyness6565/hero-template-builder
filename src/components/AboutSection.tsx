@@ -24,10 +24,10 @@ const AboutSection = () => {
           className="space-y-6 text-muted-foreground leading-relaxed"
         >
           <p>
-            CryptoExperTrade has become one of the most reputable brokers in the industry, offering traders CFDs across Forex, Equities, Commodities and Futures. Trading on the Forex market is a legitimate and straightforward way of generating income.
+            CryptoExpertTrade has become one of the most reputable brokers in the industry, offering traders CFDs across Forex, Equities, Commodities and Futures. Trading on the Forex market is a legitimate and straightforward way of generating income.
           </p>
           <p>
-            The good news is that you don't have to be a professional trader in order to make money. All you need is the right personality and the right skill set and you can make money trading on foreign exchanges. CryptoExperTrade lets you trade in the way that best suits you.
+            The good news is that you don't have to be a professional trader in order to make money. All you need is the right personality and the right skill set and you can make money trading on foreign exchanges. CryptoExpertTrade lets you trade in the way that best suits you.
           </p>
 
           <div className="grid md:grid-cols-2 gap-6 mt-8">
@@ -40,7 +40,7 @@ const AboutSection = () => {
             <div className="glass-card rounded-xl p-6">
               <h3 className="font-heading font-semibold text-foreground mb-2">Complete Control</h3>
               <p className="text-sm">
-                With the right tools, information and access to all the world's currencies, CryptoExperTrade puts you in control of the trades you make.
+                With the right tools, information and access to all the world's currencies, CryptoExpertTrade puts you in control of the trades you make.
               </p>
             </div>
           </div>

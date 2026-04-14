@@ -3,10 +3,10 @@ import { useNavigate } from "react-router-dom";
 import { Zap, Brain, BarChart3, Layout } from "lucide-react";
 
 const tools = [
-  { icon: Zap, title: "Reliable Execution", desc: "Featuring the market's sharpest execution, CryptoExperTrade fills your orders in milliseconds without any requotes or price manipulation." },
+  { icon: Zap, title: "Reliable Execution", desc: "Featuring the market's sharpest execution, CryptoExpertTrade fills your orders in milliseconds without any requotes or price manipulation." },
   { icon: Brain, title: "Intelligent Analysis", desc: "Make informed decisions with smart market analysis tools, Live Sentiment data and in-platform market insights." },
   { icon: BarChart3, title: "Transparent Reporting", desc: "Access transaction statistics, equity charts and detailed history of your deals for a crystal clear understanding of your performance." },
-  { icon: Layout, title: "Intuitive Interface", desc: "Easy to use and navigate, CryptoExperTrade was built with real traders' needs in mind. Trade and experience its distinct advantage." },
+  { icon: Layout, title: "Intuitive Interface", desc: "Easy to use and navigate, CryptoExpertTrade was built with real traders' needs in mind. Trade and experience its distinct advantage." },
 ];
 
 const AdvancedToolsSection = () => (

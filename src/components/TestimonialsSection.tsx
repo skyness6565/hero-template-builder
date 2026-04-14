@@ -2,12 +2,12 @@ import { motion } from "framer-motion";
 import { Star } from "lucide-react";
 
 const testimonials = [
-  { quote: "Since I started using CryptoExperTrade, I have been earning like never before. You guys have the best signals.", name: "Malcom47", role: "Verified Trader" },
-  { quote: "I already got more than $200,000 within a month investing with CryptoExperTrade. Will again invest soon.", name: "Christy", role: "Elite Investor" },
+  { quote: "Since I started using CryptoExpertTrade, I have been earning like never before. You guys have the best signals.", name: "Malcom47", role: "Verified Trader" },
+  { quote: "I already got more than $200,000 within a month investing with CryptoExpertTrade. Will again invest soon.", name: "Christy", role: "Elite Investor" },
   { quote: "I was able to earn additional $30,000 to my profit. It's amazing, you guys are the best, keep it up.", name: "Linday8", role: "Professional Trader" },
-  { quote: "This was a very easy process and I received my funds quickly as I needed them! Highly recommend CryptoExperTrade.", name: "Crian", role: "Active Trader" },
-  { quote: "I rate CryptoExperTrade five stars because of the service, you register online, upload ID and you deposit and withdraw after trades.", name: "Claudia", role: "Satisfied Investor" },
-  { quote: "I am very pleased with the customer service. Also online service is great and easy thank you CryptoExperTrade team.", name: "Jenny", role: "Premium Member" },
+  { quote: "This was a very easy process and I received my funds quickly as I needed them! Highly recommend CryptoExpertTrade.", name: "Crian", role: "Active Trader" },
+  { quote: "I rate CryptoExpertTrade five stars because of the service, you register online, upload ID and you deposit and withdraw after trades.", name: "Claudia", role: "Satisfied Investor" },
+  { quote: "I am very pleased with the customer service. Also online service is great and easy thank you CryptoExpertTrade team.", name: "Jenny", role: "Premium Member" },
 ];
 
 const TestimonialsSection = () => (

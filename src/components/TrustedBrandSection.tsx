@@ -24,7 +24,7 @@ const TrustedBrandSection = () => {
         >
           <span className="text-sm text-primary font-medium">Global Trust</span>
           <h2 className="text-3xl md:text-4xl font-bold font-heading mt-2">
-            Why CryptoExperTrade Is One of the World's Most Trusted Brands
+            Why CryptoExpertTrade Is One of the World's Most Trusted Brands
           </h2>
           <p className="text-muted-foreground mt-4">
             Experience the reliability and security that our global clients have come to trust
