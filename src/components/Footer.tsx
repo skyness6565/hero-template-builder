@@ -5,7 +5,7 @@ const Footer = () => (
         <div>
           <div className="font-heading text-xl font-bold mb-4">
             <span className="text-foreground">Crypto</span>
-            <span className="text-primary">ExperTrade</span>
+            <span className="text-primary">ExpertTrade</span>
           </div>
           <p className="text-sm text-muted-foreground max-w-sm">
             Your trusted partner in global trading. Trade forex, crypto, stocks, and commodities with confidence.
@@ -30,7 +30,7 @@ const Footer = () => (
         </div>
       </div>
       <div className="border-t border-border/50 pt-6 text-center text-xs text-muted-foreground">
-        © {new Date().getFullYear()} CryptoExperTrade. All rights reserved.
+        © {new Date().getFullYear()} CryptoExpertTrade. All rights reserved.
       </div>
     </div>
   </footer>

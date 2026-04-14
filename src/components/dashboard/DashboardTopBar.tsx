@@ -27,7 +27,7 @@ const DashboardTopBar = ({ onMenuClick }: Props) => {
           </button>
           <div className="font-heading text-lg font-bold flex items-center gap-1 lg:hidden">
             <span className="text-foreground">Crypto</span>
-            <span className="text-primary">ExperTrade</span>
+            <span className="text-primary">ExpertTrade</span>
           </div>
         </div>
 

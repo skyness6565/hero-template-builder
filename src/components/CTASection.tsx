@@ -34,7 +34,7 @@ const CTASection = () => {
         >
           <span className="text-sm text-primary font-medium">Comprehensive Services</span>
           <h2 className="text-3xl md:text-4xl font-bold font-heading mt-2">
-            Start Trading with CryptoExperTrade
+            Start Trading with CryptoExpertTrade
           </h2>
           <p className="text-muted-foreground mt-4">
             Everything you need for successful trading in one platform

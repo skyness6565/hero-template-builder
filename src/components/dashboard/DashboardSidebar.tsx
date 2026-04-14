@@ -98,7 +98,7 @@ const DashboardSidebar = ({ open, onClose }: Props) => {
             </div>
             <div className="font-heading text-lg font-bold">
               <span className="text-foreground">Crypto</span>
-              <span className="text-primary">ExperTrade</span>
+              <span className="text-primary">ExpertTrade</span>
             </div>
           </div>
           <button onClick={onClose} className="lg:hidden text-muted-foreground hover:text-foreground transition-colors">

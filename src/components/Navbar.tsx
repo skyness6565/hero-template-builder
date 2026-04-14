@@ -38,7 +38,7 @@ const Navbar = () => {
       <div className="container mx-auto flex items-center justify-between py-4 px-4">
         <div className="font-heading text-xl font-bold cursor-pointer" onClick={() => navigate("/")}>
           <span className="text-foreground">Crypto</span>
-          <span className="text-primary">ExperTrade</span>
+          <span className="text-primary">ExpertTrade</span>
         </div>
 
         <div className="hidden md:flex items-center gap-8">
