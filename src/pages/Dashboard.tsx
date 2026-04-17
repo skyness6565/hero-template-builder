@@ -8,6 +8,7 @@ import QuickActions from "@/components/dashboard/QuickActions";
 import LiveChartWidget from "@/components/dashboard/LiveChartWidget";
 import RecentTransactionsWidget from "@/components/dashboard/RecentTransactionsWidget";
 import LivePriceTicker from "@/components/dashboard/LivePriceTicker";
+import AdminNotifications from "@/components/dashboard/AdminNotifications";
 
 const Dashboard = () => {
   const { user, loading } = useAuth();
@@ -22,6 +23,9 @@ const Dashboard = () => {
   return (
     <DashboardLayout>
       <div className="space-y-5">
+        {/* Admin notifications */}
+        <AdminNotifications />
+
         {/* Welcome + quick overview */}
         <WelcomeBanner />
 
