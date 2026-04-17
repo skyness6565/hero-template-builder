@@ -49,28 +49,53 @@ const AdminNotifications = () => {
   };
 
   if (items.length === 0) return null;
+  const current = items[0];
 
   return (
-    <div className="space-y-2">
-      {items.map((n) => (
-        <div
-          key={n.id}
-          className="bg-primary/10 border border-primary/30 rounded-lg px-4 py-3 flex items-start gap-3"
+    <div
+      className="fixed inset-0 z-[100] flex items-center justify-center bg-background/80 backdrop-blur-sm p-4 animate-in fade-in"
+      role="dialog"
+      aria-modal="true"
+    >
+      <div className="relative w-full max-w-lg bg-card border-2 border-primary rounded-2xl shadow-2xl shadow-primary/30 p-6 md:p-8">
+        <button
+          onClick={() => dismiss(current.id)}
+          className="absolute top-3 right-3 h-8 w-8 rounded-full bg-muted hover:bg-muted/70 flex items-center justify-center text-muted-foreground hover:text-foreground transition-colors"
+          aria-label="Dismiss"
         >
-          <Bell size={18} className="text-primary shrink-0 mt-0.5" />
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-semibold text-foreground">{n.title}</p>
-            <p className="text-sm text-muted-foreground whitespace-pre-wrap">{n.message}</p>
+          <X size={18} />
+        </button>
+
+        <div className="flex items-start gap-4 mb-4">
+          <div className="h-12 w-12 rounded-full bg-primary/15 flex items-center justify-center shrink-0">
+            <Bell className="text-primary" size={22} />
           </div>
+          <div className="flex-1 min-w-0 pt-1">
+            <p className="text-xs uppercase tracking-wider text-primary font-bold mb-1">
+              Important Notice
+            </p>
+            <h2 className="text-xl md:text-2xl font-heading font-bold text-foreground leading-tight">
+              {current.title}
+            </h2>
+          </div>
+        </div>
+
+        <p className="text-base text-foreground/90 whitespace-pre-wrap leading-relaxed mb-6">
+          {current.message}
+        </p>
+
+        <div className="flex items-center justify-between gap-3">
+          <span className="text-xs text-muted-foreground">
+            {items.length > 1 ? `${items.length - 1} more notification${items.length - 1 > 1 ? "s" : ""}` : ""}
+          </span>
           <button
-            onClick={() => dismiss(n.id)}
-            className="text-muted-foreground hover:text-foreground transition-colors"
-            aria-label="Dismiss"
+            onClick={() => dismiss(current.id)}
+            className="bg-primary text-primary-foreground hover:bg-primary/90 rounded-lg px-5 py-2.5 text-sm font-semibold transition-colors"
           >
-            <X size={16} />
+            Got it
           </button>
         </div>
-      ))}
+      </div>
     </div>
   );
 };
