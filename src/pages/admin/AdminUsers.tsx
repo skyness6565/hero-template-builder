@@ -7,6 +7,7 @@ import { supabase } from "@/integrations/supabase/client";
 import { useToast } from "@/hooks/use-toast";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Copy, Check } from "lucide-react";
 
 interface UserRow {
   user_id: string;
@@ -26,6 +27,14 @@ const AdminUsers = () => {
   const [users, setUsers] = useState<UserRow[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
   const [editValues, setEditValues] = useState<Partial<UserRow>>({});
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const copyId = (id: string) => {
+    navigator.clipboard.writeText(id);
+    setCopiedId(id);
+    toast({ title: "User ID copied" });
+    setTimeout(() => setCopiedId(null), 1500);
+  };
 
   useEffect(() => {
     if (!authLoading && !user) navigate("/auth");
@@ -74,12 +83,14 @@ const AdminUsers = () => {
 
   return (
     <AdminLayout>
-      <h1 className="text-2xl font-bold font-heading mb-6">Users & Balances</h1>
+      <h1 className="text-2xl font-bold font-heading mb-2">Users & Balances</h1>
+      <p className="text-sm text-muted-foreground mb-6">Click the copy icon next to a User ID to use it in the Notifications page.</p>
       <div className="overflow-x-auto">
         <table className="w-full text-sm">
           <thead>
             <tr className="border-b border-border/30 text-left text-muted-foreground">
               <th className="pb-3 pr-4">User</th>
+              <th className="pb-3 pr-4">User ID</th>
               <th className="pb-3 pr-4">Balance</th>
               <th className="pb-3 pr-4">Bonus</th>
               <th className="pb-3 pr-4">Deposits</th>
@@ -92,6 +103,21 @@ const AdminUsers = () => {
             {users.map((u) => (
               <tr key={u.user_id} className="border-b border-border/10">
                 <td className="py-3 pr-4 font-medium">{u.display_name}</td>
+                <td className="py-3 pr-4">
+                  <div className="flex items-center gap-2">
+                    <code className="text-xs bg-muted px-2 py-1 rounded font-mono">
+                      {u.user_id.slice(0, 8)}...{u.user_id.slice(-4)}
+                    </code>
+                    <button
+                      onClick={() => copyId(u.user_id)}
+                      className="text-muted-foreground hover:text-primary transition-colors"
+                      aria-label="Copy User ID"
+                      title={u.user_id}
+                    >
+                      {copiedId === u.user_id ? <Check size={14} className="text-chart-green" /> : <Copy size={14} />}
+                    </button>
+                  </div>
+                </td>
                 {editId === u.user_id ? (
                   <>
                     {(["balance", "bonus", "total_deposits", "total_withdrawals", "total_profit"] as const).map((f) => (
