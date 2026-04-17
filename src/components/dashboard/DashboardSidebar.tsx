@@ -17,6 +17,7 @@ import {
   Shield,
   User,
   Zap,
+  ShieldCheck,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -40,6 +41,7 @@ const portfolioItems = [
 
 const accountItems = [
   { label: "My Profile", icon: User, path: "/profile" },
+  { label: "KYC Verification", icon: ShieldCheck, path: "/dashboard/kyc" },
 ];
 
 interface Props {

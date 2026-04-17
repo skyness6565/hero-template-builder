@@ -23,6 +23,9 @@ import AdminInvestments from "./pages/admin/AdminInvestments";
 import AdminPlans from "./pages/admin/AdminPlans";
 import AdminBots from "./pages/admin/AdminBots";
 import AdminWallets from "./pages/admin/AdminWallets";
+import AdminNotificationsPage from "./pages/admin/AdminNotifications";
+import AdminKyc from "./pages/admin/AdminKyc";
+import KycVerification from "./pages/KycVerification";
 import NotFound from "./pages/NotFound";
 
 
@@ -55,6 +58,9 @@ const App = () => (
             <Route path="/admin/plans" element={<AdminPlans />} />
             <Route path="/admin/bots" element={<AdminBots />} />
             <Route path="/admin/wallets" element={<AdminWallets />} />
+            <Route path="/admin/notifications" element={<AdminNotificationsPage />} />
+            <Route path="/admin/kyc" element={<AdminKyc />} />
+            <Route path="/dashboard/kyc" element={<KycVerification />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
           
