@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AdminLayout from "@/components/admin/AdminLayout";
 import { supabase } from "@/integrations/supabase/client";
 import { useAuth } from "@/contexts/AuthContext";
 import useAdmin from "@/hooks/useAdmin";
 import { toast } from "@/hooks/use-toast";
-import { Bell, Trash2, Send } from "lucide-react";
+import { Bell, Trash2, Send, Search, Check, ChevronDown } from "lucide-react";
 
 interface Notif {
   id: string;
@@ -16,6 +16,12 @@ interface Notif {
   created_at: string;
 }
 
+interface AppUser {
+  id: string;
+  email: string;
+  display_name: string | null;
+}
+
 const AdminNotificationsPage = () => {
   const { user } = useAuth();
   const { isAdmin, loading } = useAdmin();
@@ -23,9 +29,14 @@ const AdminNotificationsPage = () => {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [target, setTarget] = useState<"all" | "user">("all");
-  const [targetUserId, setTargetUserId] = useState("");
   const [items, setItems] = useState<Notif[]>([]);
   const [sending, setSending] = useState(false);
+
+  const [users, setUsers] = useState<AppUser[]>([]);
+  const [usersLoading, setUsersLoading] = useState(false);
+  const [search, setSearch] = useState("");
+  const [pickerOpen, setPickerOpen] = useState(false);
+  const [selected, setSelected] = useState<AppUser | null>(null);
 
   useEffect(() => {
     if (!loading && !isAdmin) navigate("/dashboard");
@@ -40,15 +51,47 @@ const AdminNotificationsPage = () => {
     setItems((data as Notif[]) ?? []);
   };
 
+  const loadUsers = async () => {
+    setUsersLoading(true);
+    const { data, error } = await supabase.functions.invoke("admin-list-users");
+    setUsersLoading(false);
+    if (error) {
+      toast({ title: "Failed to load users", description: error.message, variant: "destructive" });
+      return;
+    }
+    setUsers((data as { users: AppUser[] })?.users ?? []);
+  };
+
   useEffect(() => {
-    if (isAdmin) load();
+    if (isAdmin) {
+      load();
+      loadUsers();
+    }
   }, [isAdmin]);
+
+  const filtered = useMemo(() => {
+    const q = search.trim().toLowerCase();
+    if (!q) return users.slice(0, 50);
+    return users
+      .filter(
+        (u) =>
+          u.email.toLowerCase().includes(q) ||
+          (u.display_name ?? "").toLowerCase().includes(q),
+      )
+      .slice(0, 50);
+  }, [users, search]);
+
+  const userEmailById = useMemo(() => {
+    const m = new Map<string, string>();
+    users.forEach((u) => m.set(u.id, u.email));
+    return m;
+  }, [users]);
 
   const send = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!user || !title.trim() || !message.trim()) return;
-    if (target === "user" && !targetUserId.trim()) {
-      toast({ title: "User ID required", variant: "destructive" });
+    if (target === "user" && !selected) {
+      toast({ title: "Select a user", variant: "destructive" });
       return;
     }
     setSending(true);
@@ -56,7 +99,7 @@ const AdminNotificationsPage = () => {
       title: title.trim(),
       message: message.trim(),
       target,
-      target_user_id: target === "user" ? targetUserId.trim() : null,
+      target_user_id: target === "user" ? selected!.id : null,
       created_by: user.id,
     });
     setSending(false);
@@ -67,7 +110,8 @@ const AdminNotificationsPage = () => {
     toast({ title: "Notification sent" });
     setTitle("");
     setMessage("");
-    setTargetUserId("");
+    setSelected(null);
+    setSearch("");
     load();
   };
 
@@ -118,7 +162,10 @@ const AdminNotificationsPage = () => {
               <label className="block text-sm font-medium mb-1">Target</label>
               <select
                 value={target}
-                onChange={(e) => setTarget(e.target.value as "all" | "user")}
+                onChange={(e) => {
+                  setTarget(e.target.value as "all" | "user");
+                  setSelected(null);
+                }}
                 className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm"
               >
                 <option value="all">All users</option>
@@ -126,14 +173,62 @@ const AdminNotificationsPage = () => {
               </select>
             </div>
             {target === "user" && (
-              <div>
-                <label className="block text-sm font-medium mb-1">User ID</label>
-                <input
-                  value={targetUserId}
-                  onChange={(e) => setTargetUserId(e.target.value)}
-                  placeholder="UUID"
-                  className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm"
-                />
+              <div className="relative">
+                <label className="block text-sm font-medium mb-1">User</label>
+                <button
+                  type="button"
+                  onClick={() => setPickerOpen((o) => !o)}
+                  className="w-full bg-background border border-border rounded-lg px-3 py-2 text-sm flex items-center justify-between"
+                >
+                  <span className={selected ? "text-foreground truncate" : "text-muted-foreground"}>
+                    {selected ? selected.email : usersLoading ? "Loading users..." : "Select a user"}
+                  </span>
+                  <ChevronDown size={14} className="text-muted-foreground shrink-0 ml-2" />
+                </button>
+                {pickerOpen && (
+                  <>
+                    <div className="fixed inset-0 z-30" onClick={() => setPickerOpen(false)} />
+                    <div className="absolute left-0 right-0 top-full mt-1 bg-card border border-border rounded-lg shadow-2xl z-40 overflow-hidden">
+                      <div className="flex items-center gap-2 px-3 py-2 border-b border-border/30">
+                        <Search size={14} className="text-muted-foreground" />
+                        <input
+                          autoFocus
+                          value={search}
+                          onChange={(e) => setSearch(e.target.value)}
+                          placeholder="Search by email or name..."
+                          className="flex-1 bg-transparent text-sm outline-none"
+                        />
+                      </div>
+                      <div className="max-h-64 overflow-y-auto">
+                        {usersLoading ? (
+                          <div className="px-3 py-4 text-sm text-muted-foreground">Loading...</div>
+                        ) : filtered.length === 0 ? (
+                          <div className="px-3 py-4 text-sm text-muted-foreground">No users found.</div>
+                        ) : (
+                          filtered.map((u) => (
+                            <button
+                              key={u.id}
+                              type="button"
+                              onClick={() => {
+                                setSelected(u);
+                                setPickerOpen(false);
+                              }}
+                              className="w-full text-left px-3 py-2 text-sm hover:bg-muted/40 flex items-center justify-between gap-2"
+                            >
+                              <div className="min-w-0">
+                                <p className="text-foreground truncate">{u.email}</p>
+                                {u.display_name && (
+                                  <p className="text-xs text-muted-foreground truncate">{u.display_name}</p>
+                                )}
+                              </div>
+                              {selected?.id === u.id && <Check size={14} className="text-primary shrink-0" />}
+                            </button>
+                          ))
+                        )}
+                      </div>
+                    </div>
+                  </>
+                )}
               </div>
             )}
           </div>
@@ -158,8 +253,10 @@ const AdminNotificationsPage = () => {
                     <p className="font-semibold text-sm">{n.title}</p>
                     <p className="text-sm text-muted-foreground whitespace-pre-wrap">{n.message}</p>
                     <p className="text-xs text-muted-foreground/70 mt-1">
-                      {n.target === "all" ? "All users" : `User: ${n.target_user_id}`} ·{" "}
-                      {new Date(n.created_at).toLocaleString()}
+                      {n.target === "all"
+                        ? "All users"
+                        : `User: ${userEmailById.get(n.target_user_id ?? "") ?? n.target_user_id}`}{" "}
+                      · {new Date(n.created_at).toLocaleString()}
                     </p>
                   </div>
                   <button onClick={() => remove(n.id)} className="text-chart-red hover:opacity-80">
