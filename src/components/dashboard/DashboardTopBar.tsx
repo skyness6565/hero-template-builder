@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { LogOut, User, ChevronDown, Menu, Bell, Wallet } from "lucide-react";
+import { LogOut, User, ChevronDown, Menu, Wallet } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useAuth } from "@/contexts/AuthContext";
 import useUserBalance from "@/hooks/useUserBalance";
+import NotificationBell from "./NotificationBell";
 
 interface Props {
   onMenuClick: () => void;
@@ -54,10 +55,7 @@ const DashboardTopBar = ({ onMenuClick }: Props) => {
           </div>
 
           {/* Notification bell */}
-          <button className="relative h-9 w-9 rounded-lg bg-muted/50 border border-border/30 flex items-center justify-center hover:bg-muted transition-colors">
-            <Bell size={16} className="text-muted-foreground" />
-            <span className="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full bg-chart-green" />
-          </button>
+          <NotificationBell />
 
           {/* Deposit button */}
           <Button
