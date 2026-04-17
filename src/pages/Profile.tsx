@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useToast } from "@/hooks/use-toast";
-import { ArrowLeft, Camera, User } from "lucide-react";
+import { ArrowLeft, Camera, User, Copy, Check } from "lucide-react";
 
 const Profile = () => {
   const { user, loading: authLoading } = useAuth();
@@ -18,6 +18,15 @@ const Profile = () => {
   const [avatarUrl, setAvatarUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
+  const [copied, setCopied] = useState(false);
+
+  const copyId = () => {
+    if (!user?.id) return;
+    navigator.clipboard.writeText(user.id);
+    setCopied(true);
+    toast({ title: "User ID copied" });
+    setTimeout(() => setCopied(false), 1500);
+  };
 
   useEffect(() => {
     if (!authLoading && !user) {
@@ -130,6 +139,23 @@ const Profile = () => {
                 className="hidden"
                 onChange={handleAvatarUpload}
               />
+            </div>
+          </div>
+
+          {/* User ID */}
+          <div className="space-y-2 mb-4">
+            <Label>User ID</Label>
+            <div className="flex items-center gap-2 bg-muted/40 border border-border/40 rounded-md px-3 py-2">
+              <code className="flex-1 text-xs font-mono text-foreground/80 break-all">
+                {user?.id}
+              </code>
+              <button
+                onClick={copyId}
+                className="shrink-0 text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Copy User ID"
+              >
+                {copied ? <Check size={16} className="text-chart-green" /> : <Copy size={16} />}
+              </button>
             </div>
           </div>
 
