@@ -146,8 +146,8 @@ const Profile = () => {
           <div className="space-y-2 mb-4">
             <Label>User ID</Label>
             <div className="flex items-center gap-2 bg-muted/40 border border-border/40 rounded-md px-3 py-2">
-              <code className="flex-1 text-xs font-mono text-foreground/80 break-all">
-                {user?.id}
+              <code className="flex-1 text-xs font-mono text-foreground/80 truncate" title={user?.id}>
+                {user?.id ? `${user.id.slice(0, 8)}...${user.id.slice(-6)}` : ""}
               </code>
               <button
                 onClick={copyId}
