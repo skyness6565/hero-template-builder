@@ -27,6 +27,14 @@ const AdminUsers = () => {
   const [users, setUsers] = useState<UserRow[]>([]);
   const [editId, setEditId] = useState<string | null>(null);
   const [editValues, setEditValues] = useState<Partial<UserRow>>({});
+  const [copiedId, setCopiedId] = useState<string | null>(null);
+
+  const copyId = (id: string) => {
+    navigator.clipboard.writeText(id);
+    setCopiedId(id);
+    toast({ title: "User ID copied" });
+    setTimeout(() => setCopiedId(null), 1500);
+  };
 
   useEffect(() => {
     if (!authLoading && !user) navigate("/auth");
